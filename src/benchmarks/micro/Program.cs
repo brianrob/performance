@@ -16,7 +16,7 @@ namespace MicroBenchmarks
                 .FromAssembly(typeof(Program).Assembly)
                 .Run(args, RecommendedConfig.Create(
                     artifactsPath: new DirectoryInfo(Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), "BenchmarkDotNet.Artifacts")), 
-                    mandatoryCategories: ImmutableHashSet.Create(Categories.CoreFX, Categories.CoreCLR, Categories.ThirdParty)))
+                    mandatoryCategories: ImmutableHashSet.Create(Categories.CoreFX, Categories.CoreCLR, Categories.ThirdParty, Categories.Mono)))
                 .ToExitCode();
     }
 }
