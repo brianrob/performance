@@ -13,7 +13,7 @@ namespace Mono
         private static object X = null;
 
         [Benchmark]
-        public void Test()
+        public void BoxTest()
         {
             for(int i=0; i<5000000; i++)
             {
