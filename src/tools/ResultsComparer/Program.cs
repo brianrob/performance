@@ -177,10 +177,19 @@ namespace ResultsComparer
 
             using (var textWriter = csvPath.CreateText())
             {
+                textWriter.WriteLine("Test,Conclusion,Ratio,Base Median (ns),Diff Median (ns)");
                 foreach (var result in notSame)
                 {
-                    textWriter.WriteLine($"\"{result.id.Replace("\"", "\"\"")}\";base;{result.conclusion};{string.Join(';', result.baseResult.GetOriginalValues())}");
-                    textWriter.WriteLine($"\"{result.id.Replace("\"", "\"\"")}\";diff;{result.conclusion};{string.Join(';', result.diffResult.GetOriginalValues())}");
+                    //textWriter.WriteLine($"\"{result.id.Replace("\"", "\"\"")}\";base;{result.conclusion};{string.Join(';', result.baseResult.GetOriginalValues())}");
+                    //textWriter.WriteLine($"\"{result.id.Replace("\"", "\"\"")}\";diff;{result.conclusion};{string.Join(';', result.diffResult.GetOriginalValues())}");
+
+                    textWriter.Write($"\"{result.id.Replace("\"", "\"\"")}\",");
+                    textWriter.Write($"{result.conclusion.ToString()},");
+                    //textWriter.Write($"{GetRatio(result.conclusion, result.baseResult, result.diffResult)},");
+                    textWriter.Write($"{result.diffResult.Statistics.Median / result.baseResult.Statistics.Median},");
+                    textWriter.Write($"{result.baseResult.Statistics.Median},");
+                    textWriter.WriteLine($"{result.diffResult.Statistics.Median},");
+
                 }
             }
 
